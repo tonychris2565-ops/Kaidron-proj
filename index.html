@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Toris </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: white;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #020617;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+    }
+
+    header h1 {
+      color: #38bdf8;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .hero {
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 40px;
+      color: #38bdf8;
+    }
+
+    .typing {
+      border-right: 2px solid white;
+      display: inline-block;
+      padding-right: 5px;
+    }
+
+    .card {
+      background: #020617;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(56,189,248,0.3);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #020617;
+      margin-top: 40px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #38bdf8;
+      color: black;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #0ea5e9;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Toris Portfolio</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Hello, I'm Toris</h2>
+    <p class="typing" id="typing"></p>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="card">
+      <p>
+        I am Toris, a passionate student interested in technology, programming,
+        and building modern applications. I enjoy learning new skills and
+        creating projects that solve real-world problems.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="card">
+      <ul>
+        <li>HTML, CSS, JavaScript</li>
+        <li>C++ Programming</li>
+        <li>App Development</li>
+        <li>UI/UX Design</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>Calculator App</h3>
+        <p>A simple calculator built with JavaScript.</p>
+      </div>
+
+      <div class="card">
+        <h3>Student Dashboard</h3>
+        <p>A web app to manage student tasks and notes.</p>
+      </div>
+
+      <div class="card">
+        <h3>Mini Game</h3>
+        <p>A fun browser-based game using JS.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="card">
+      <p>Email: kaidronsmith@gmail.com</p>
+      <button onclick="showMessage()">Say Hello</button>
+      <p id="message"></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Toris | Student Portfolio</p>
+  </footer>
+
+  <script>
+    // Typing Effect
+    const text = ["Student", "Developer", "Creator"];
+    let index = 0;
+    let charIndex = 0;
+    let currentText = "";
+    let isDeleting = false;
+    const speed = 100;
+
+    function type() {
+      if (index >= text.length) index = 0;
+
+      currentText = text[index];
+
+      if (!isDeleting) {
+        document.getElementById("typing").textContent =
+          currentText.substring(0, charIndex++);
+      } else {
+        document.getElementById("typing").textContent =
+          currentText.substring(0, charIndex--);
+      }
+
+      if (charIndex === currentText.length + 1) {
+        isDeleting = true;
+        setTimeout(type, 1000);
+        return;
+      }
+
+      if (charIndex === 0) {
+        isDeleting = false;
+        index++;
+      }
+
+      setTimeout(type, isDeleting ? 50 : speed);
+    }
+
+    type();
+
+    // Button Interaction
+    function showMessage() {
+      document.getElementById("message").textContent =
+        "Thanks for visiting my portfolio!";
+    }
+  </script>
+
+</body>
+</html>
